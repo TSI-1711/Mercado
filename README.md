@@ -1,7 +1,7 @@
-## Isaque e Filipe
+## Codigos usados em aula.
 
-##Teste337
-
-##Larissa e Mel
-
-##joao
+git init
+git config user.name "seunome"
+git config user.email "seuemail"
+git clone "link do git"
+git ja nao sei mais
