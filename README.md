@@ -1,11 +1,9 @@
 ## Isaque e Filipe
 
-## Teste337
-
 ## Larissa e Mel - 26
 
-## joao
+## Joao Pedro e Pedro
 
-## luiSinho do grau
+## Luis Cezar
 
 ## Ana Carla e Enrico
