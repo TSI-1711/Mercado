@@ -14,7 +14,7 @@ use App\Http\Controllers\Nivel_acessoController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::get('/nivel_acesso', [Nivel_acessoController::class, 'listar']);
+//Route::get('/nivel_acesso', [Nivel_acessoController::class, 'listar']);
