@@ -94,13 +94,6 @@
             display: block !important
         }
 
-        .dropdown {
-            color:white;
-
-        }
-        .dropdown:hover {
-            color: white;
-        }
 
     </style>
 </head>
