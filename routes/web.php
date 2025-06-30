@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Nivel_acessoController;
+use App\Http\Controllers\ContaReceberController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +13,13 @@ use App\Http\Controllers\Nivel_acessoController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// Rotas para o gerenciamento de contas a receber
+route::get('/contas_receber', [ContaReceberController::class, 'index']);
+route::patch('contas-receber/{id}/baixa', [ContaReceberController::class, 'baixa'])->name('contas-receber.baixa');
+Route::get('contas-receber-vencidas', [ContaReceberController::class, 'vencidas'])->name('contas-receber.vencidas');
+//
+
 
 Route::get('/', function () {
     return view('home');
