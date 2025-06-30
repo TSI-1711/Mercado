@@ -1,13 +1,23 @@
-<x-app-layout>
-    <x-slot name="header">Nova Compra</x-slot>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Nova Compra</title>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+</head>
+<body style="font-family: sans-serif; background-color: #f3f4f6; padding: 20px;">
 
-    <div class="max-w-7xl mx-auto py-6">
-        <form method="POST" action="{{ route('compra.store') }}" class="bg-white p-6 rounded shadow space-y-4">
+    <header style="max-width: 768px; margin: 0 auto;">
+        <h1 style="font-size: 1.5rem; font-weight: 600; color: #1f2937; margin-bottom: 20px;">Nova Compra</h1>
+    </header>
+
+    <main style="max-width: 768px; margin: 0 auto;">
+        <form method="POST" action="{{ route('compra.store') }}" style="background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgb(0 0 0 / 0.1); display: flex; flex-direction: column; gap: 16px;">
             @csrf
 
             <div>
-                <label for="fornecedor_id" class="block font-medium text-sm text-gray-700">Fornecedor:</label>
-                <select name="fornecedor_id" id="fornecedor_id" class="w-full rounded border-gray-300">
+                <label for="fornecedor_id" style="display: block; font-weight: 500; font-size: 0.875rem; color: #374151;">Fornecedor:</label>
+                <select name="fornecedor_id" id="fornecedor_id" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;">
                     @foreach($fornecedores as $f)
                         <option value="{{ $f->id }}">{{ $f->nome }}</option>
                     @endforeach
@@ -15,23 +25,25 @@
             </div>
 
             <div>
-                <label for="descricao" class="block font-medium text-sm text-gray-700">Descrição:</label>
-                <textarea name="descricao" id="descricao" rows="3" class="w-full rounded border-gray-300" required></textarea>
+                <label for="descricao" style="display: block; font-weight: 500; font-size: 0.875rem; color: #374151;">Descrição:</label>
+                <textarea name="descricao" id="descricao" rows="3" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;" required></textarea>
             </div>
 
             <div>
-                <label for="data" class="block font-medium text-sm text-gray-700">Data:</label>
-                <input name="data" id="data" type="date" class="w-full rounded border-gray-300" required>
+                <label for="data" style="display: block; font-weight: 500; font-size: 0.875rem; color: #374151;">Data:</label>
+                <input name="data" id="data" type="date" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;" required>
             </div>
 
             <div>
-                <label for="valor_total" class="block font-medium text-sm text-gray-700">Valor Total:</label>
-                <input name="valor_total" id="valor_total" type="number" step="0.01" class="w-full rounded border-gray-300" required>
+                <label for="valor_total" style="display: block; font-weight: 500; font-size: 0.875rem; color: #374151;">Valor Total:</label>
+                <input name="valor_total" id="valor_total" type="number" step="0.01" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;" required>
             </div>
 
-            <div class="flex justify-end">
-                <button class="bg-green-600 text-white px-4 py-2 rounded">Salvar</button>
+            <div style="display: flex; justify-content: flex-end;">
+                <button type="submit" style="background-color: #16a34a; color: white; padding: 8px 16px; border-radius: 6px; font-weight: 600; border: none; cursor: pointer;">Salvar</button>
             </div>
         </form>
-    </div>
-</x-app-layout>
+    </main>
+
+</body>
+</html>

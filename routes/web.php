@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Nivel_acessoController;
+use App\Http\Controllers\FornecedorController;
+use App\Http\Controllers\CompraController;
+use App\Http\Controllers\ContasPagarController;
+use App\Http\Controllers\TipoDespesaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
