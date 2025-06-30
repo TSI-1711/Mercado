@@ -121,8 +121,9 @@
                         Contas Pagar
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Fornecedor</a></li>
-                        <li><a class="dropdown-item" href="#">Contas a Pagar</a></li>
+                        <li><a class="dropdown-item" href="/fornecedor">Fornecedor</a></li>
+                        <li><a class="dropdown-item" href="/contas_pagar">Contas a Pagar</a></li>
+                        <li><a class="dropdown-item" href="/tipo_despesa">Tipo de Despesa</a></li>
                         <li><a class="dropdown-item" href="#">Baixa de Conta</a></li>
                     </ul>
                 </li>                
