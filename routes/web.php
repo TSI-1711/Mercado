@@ -18,3 +18,7 @@ Route::get('/', function () {
 });
 
 //Route::get('/nivel_acesso', [Nivel_acessoController::class, 'listar']);
+Route::resource('fornecedor', FornecedorController::class);
+Route::resource('compra', CompraController::class);
+Route::resource('contas_pagar', ContasPagarController::class);
+Route::resource('tipo_despesa', TipoDespesaController::class);
