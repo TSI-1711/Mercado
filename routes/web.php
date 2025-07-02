@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Nivel_acessoController;
+use App\Http\Controllers\ClienteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +19,6 @@ Route::get('/', function () {
 });
 
 //Route::get('/nivel_acesso', [Nivel_acessoController::class, 'listar']);
+
+// Rotas para Clientes
+Route::resource('clientes', ClienteController::class);
