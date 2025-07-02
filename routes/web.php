@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Nivel_acessoController;
+<<<<<<< HEAD
 use App\Http\Controllers\ContaReceberController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\CompraController;
@@ -9,6 +10,9 @@ use App\Http\Controllers\ContasPagarController;
 use App\Http\Controllers\TipoDespesaController;
 use App\Http\Controllers\ProductController;
 
+=======
+use App\Http\Controllers\ClienteController;
+>>>>>>> f6cc68e (feat: implementa sistema de cadastro de clientes)
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,3 +48,6 @@ Route::get('/', function () {
 });
 
 //Route::get('/nivel_acesso', [Nivel_acessoController::class, 'listar']);
+
+// Rotas para Clientes
+Route::resource('clientes', ClienteController::class);
