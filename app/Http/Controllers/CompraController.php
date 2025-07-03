@@ -6,55 +6,53 @@ use App\Models\Compra;
 use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 
+namespace App\Http\Controllers;
+
+use App\Models\Compra;
+use App\Models\Fornecedor;
+use App\Models\Produto;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 class CompraController extends Controller
 {
-    public function index()
-    {
-        $compras = Compra::with('fornecedor')->get();
-        return view('compra.index', compact('compras'));
-    }
-
-    public function create()
-    {
-        $fornecedores = Fornecedor::all();
-        return view('compra.create', compact('fornecedores'));
-    }
+    // Os métodos index, create, show, etc., são muito similares ao OrcamentoController
 
     public function store(Request $request)
     {
         $request->validate([
-            'fornecedor_id' => 'required|exists:fornecedor,id',
-            'data' => 'required|date',
-            'descricao' => 'required|string|max:255',
-            'valor_total' => 'required|numeric',
+            'fornecedor_id' => 'required|exists:fornecedores,id',
+            'data_compra' => 'required|date',
+            'itens' => 'required|array|min:1',
+            'itens.*.produto_id' => 'required|exists:produtos,id',
+            'itens.*.quantidade' => 'required|integer|min:1',
+            'itens.*.preco_unitario' => 'required|numeric|min:0',
         ]);
 
-        Compra::create($request->all());
-        return redirect()->route('compra.index')->with('success', 'Compra cadastrada com sucesso.');
-    }
+        try {
+            DB::beginTransaction();
 
-    public function edit(Compra $compra)
-    {
-        $fornecedores = Fornecedor::all();
-        return view('compra.edit', compact('compra', 'fornecedores'));
-    }
+            $compra = new Compra();
+            $compra->fornecedor_id = $request->fornecedor_id;
+            $compra->data_compra = $request->data_compra;
+            $compra->status = 'em_aberto';
 
-    public function update(Request $request, Compra $compra)
-    {
-        $request->validate([
-            'fornecedor_id' => 'required|exists:fornecedor,id',
-            'data' => 'required|date',
-            'descricao' => 'required|string|max:255',
-            'valor_total' => 'required|numeric',
-        ]);
+            $valorTotal = 0;
+            foreach ($request->itens as $itemData) {
+                $valorTotal += $itemData['quantidade'] * $itemData['preco_unitario'];
+            }
+            $compra->valor_total = $valorTotal;
+            $compra->save();
 
-        $compra->update($request->all());
-        return redirect()->route('compra.index')->with('success', 'Compra atualizada com sucesso.');
-    }
+            // Salva os itens associados à compra
+            $compra->itens()->createMany($request->itens);
+            
+            DB::commit();
+            return redirect()->route('compras.index')->with('success', 'Ordem de Compra criada com sucesso.');
 
-    public function destroy(Compra $compra)
-    {
-        $compra->delete();
-        return redirect()->route('compra.index')->with('success', 'Compra excluída.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', 'Erro ao criar Ordem de Compra: ' . $e->getMessage())->withInput();
+        }
     }
 }

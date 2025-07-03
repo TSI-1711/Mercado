@@ -7,5 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Compra extends Model
 {
-    use HasFactory;
+    public function fornecedor()
+    {
+        return $this->belongsTo(Fornecedor::class);
+    }
+
+    public function itens()
+    {
+        return $this->hasMany(ItemCompra::class);
+    }
+    
+    public function entradas()
+    {
+        return $this->hasMany(Entrada::class);
+    }
+    public function orcamento()
+    {
+        return $this->belongsTo(Orcamento::class);
+    }
 }

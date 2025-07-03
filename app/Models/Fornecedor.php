@@ -7,14 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fornecedor extends Model
 {
-    use HasFactory;
 
-    protected $table = 'fornecedors';
-
-    protected $fillable = ['nome', 'cnpj'];
+    public function produtos()
+    {
+        return $this->belongsToMany(Produto::class, 'produto_fornecedor');
+    }
 
     public function compras()
     {
-        return $this->hasMany(Compra::class, 'fornecedor_id');
+        return $this->hasMany(Compra::class);
+    }
+
+    public function orcamentos()
+    {
+        return $this->hasMany(Orcamento::class);
     }
 }

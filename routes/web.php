@@ -7,6 +7,7 @@ use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ContasPagarController;
 use App\Http\Controllers\TipoDespesaController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,11 @@ use App\Http\Controllers\TipoDespesaController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//Rotas para compras
+Route::middleware('auth')->group(function () {
+    Route::resource('products', ProductController::class);
+});
 
 // Rotas para o gerenciamento de contas a receber
 route::get('/contas_receber', [ContaReceberController::class, 'index']);
