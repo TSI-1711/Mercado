@@ -25,8 +25,8 @@ class ContasPagarController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'compra_id' => 'nullable|exists:compra,id',
-            'tipo_despesa_id' => 'required|exists:tipo_despesa,id',
+            'compra_id' => 'nullable|exists:compras,id',
+            'tipo_despesa_id' => 'required|exists:tipo_despesas,id',
             'data_vencimento' => 'required|date',
             'valor' => 'required|numeric',
         ]);

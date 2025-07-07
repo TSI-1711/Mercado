@@ -11,7 +11,7 @@ class Fornecedor extends Model
 
     protected $table = 'fornecedors';
 
-    protected $fillable = ['nome', 'cnpj'];
+    protected $fillable = ['nome', 'cnpj', 'endereco', 'telefone', 'email',];
 
     public function compras()
     {
