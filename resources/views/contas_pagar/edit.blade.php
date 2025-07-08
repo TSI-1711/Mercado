@@ -80,7 +80,9 @@
 
             <div style="display: flex; justify-content: flex-end;">
                 <a href="{{ route('contas_pagar.index') }}" style="background-color: #6b7280; color: white; padding: 8px 16px; border-radius: 6px; font-weight: 600; text-decoration: none; margin-right: 10px;">Cancelar</a>
-                <button type="submit" style="background-color: #16a34a; color: white; padding: 8px 16px; border-radius: 6px; font-weight: 600; border: none; cursor: pointer;">Salvar</button>
+                <button type="submit" style="background-color: #16a34a; color: white; padding: 8px 16px; border-radius: 6px; font-weight: 600; border: none; cursor: pointer;">
+                    Salvar
+                </button>
             </div>
         </form>
     </main>

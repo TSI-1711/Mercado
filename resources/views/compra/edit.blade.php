@@ -56,10 +56,12 @@
                 <input name="valor_total" id="valor_total" type="number" step="0.01" value="{{ old('valor_total', $compra->valor_total) }}" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;" required>
             </div>
 
-            <div style="display: flex; justify-content: space-between;">
-                <a href="{{ route('compra.index') }}" style="background-color: #6b7280; color: white; padding: 8px 16px; border-radius: 6px; font-weight: 600; text-decoration: none;">Voltar</a>
+            <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px;">
+                <a href="{{ route('compra.index') }}" style="background-color: #6b7280; color: white; padding: 8px 16px; border-radius: 6px; font-weight: 600; text-decoration: none;">Cancelar</a>
 
-                <button type="submit" style="background-color: #3b82f6; color: white; padding: 8px 16px; border-radius: 6px; font-weight: 600; border: none; cursor: pointer;">Salvar Alterações</button>
+                <button type="submit" style="background-color: #16a34a; color: white; padding: 8px 16px; border-radius: 6px; font-weight: 600; border: none; cursor: pointer;">
+                    Salvar
+                </button>
             </div>
         </form>
     </main>
