@@ -9,19 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('compras', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('fornecedor_id');
-            $table->string('descricao');
-            $table->date('data_compra');
-            $table->decimal('valor_total', 10, 2);
-            $table->timestamps();
-
-            $table->foreign('fornecedor_id')->references('id')->on('fornecedor')->onDelete('cascade');
-        });
-    }
+    public function up()
+{
+    Schema::create('compras', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('fornecedor_id')->constrained('fornecedors')->onDelete('cascade');
+        $table->date('data_compra');
+        $table->string('descricao');
+        $table->decimal('valor_total', 10, 2);
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.

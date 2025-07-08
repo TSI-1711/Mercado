@@ -7,6 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background-color: #f8f9fa; padding-top: 40px;">
+
+    @extends('template')
+
     <div style="max-width: 800px; margin: 0 auto; padding: 0 15px;">
         <div style="background-color: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 30px;">
             <div style="background-color: #3490dc; color: white; padding: 15px 20px; border-top-left-radius: 8px; border-top-right-radius: 8px;">

@@ -21,29 +21,38 @@ class CompraController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'fornecedor_id' => 'required|exists:fornecedor,id',
-            'data' => 'required|date',
-            'descricao' => 'required|string|max:255',
-            'valor_total' => 'required|numeric',
-        ]);
+{
+    $request->validate([
+        'fornecedor_id' => 'required|exists:fornecedors,id',
+        'data_compra' => 'required|date',
+        'descricao' => 'required|string|max:255',
+        'valor_total' => 'required|numeric',
+    ]);
 
-        Compra::create($request->all());
-        return redirect()->route('compra.index')->with('success', 'Compra cadastrada com sucesso.');
-    }
+    // Grava os dados explicitamente
+    $compra = Compra::create([
+        'fornecedor_id' => $request->input('fornecedor_id'),
+        'data_compra'    => $request->input('data_compra'),
+        'descricao'      => $request->input('descricao'),
+        'valor_total'    => $request->input('valor_total'),
+    ]);
 
-    public function edit(Compra $compra)
-    {
-        $fornecedores = Fornecedor::all();
-        return view('compra.edit', compact('compra', 'fornecedores'));
-    }
+    // Redireciona com sucesso
+    return redirect()->route('compra.index')->with('success', 'Compra cadastrada com sucesso.');
+}
+
+public function edit(Compra $compra)
+{
+    $fornecedores = Fornecedor::all();
+
+    return view('compra.edit', compact('compra', 'fornecedores'));
+}
 
     public function update(Request $request, Compra $compra)
     {
         $request->validate([
-            'fornecedor_id' => 'required|exists:fornecedor,id',
-            'data' => 'required|date',
+            'fornecedor_id' => 'required|exists:fornecedors,id',
+            'data_compra' => 'required|date',
             'descricao' => 'required|string|max:255',
             'valor_total' => 'required|numeric',
         ]);

@@ -36,19 +36,20 @@ class ContasPagarController extends Controller
     }
 
     public function edit(ContasPagar $contas_pagar)
-    {
-        $compras = Compra::all();
-        $tipos = TipoDespesa::all();
-        return view('contas_pagar.edit', compact('contas_pagar', 'compras', 'tipos'));
-    }
+{
+    $compras = Compra::all();
+    $tipos = TipoDespesa::all();
+    return view('contas_pagar.edit', compact('contas_pagar', 'compras', 'tipos'));
+}
 
     public function update(Request $request, ContasPagar $contas_pagar)
     {
         $request->validate([
-            'compra_id' => 'nullable|exists:compra,id',
-            'tipo_despesa_id' => 'required|exists:tipo_despesa,id',
+            'compra_id' => 'nullable|exists:compras,id',         // corrigido de 'compra' para 'compras'
+            'tipo_despesa_id' => 'required|exists:tipo_despesas,id',  // corrigido de 'tipo_despesa' para 'tipo_despesas'
             'data_vencimento' => 'required|date',
             'valor' => 'required|numeric',
+            'pago' => 'nullable|boolean', // se incluir o campo pago no formulário
         ]);
 
         $contas_pagar->update($request->all());

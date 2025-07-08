@@ -7,6 +7,8 @@
 </head>
 <body style="font-family: sans-serif; background-color: #f3f4f6; padding: 20px;">
 
+    @extends('template')
+
     <div style="max-width: 1200px; margin: 0 auto;">
         <header style="margin-bottom: 20px;">
             <h1 style="font-weight: 600; font-size: 1.5rem; color: #1f2937;">Lista de Fornecedores</h1>

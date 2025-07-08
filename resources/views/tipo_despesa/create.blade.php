@@ -7,6 +7,8 @@
 </head>
 <body style="font-family: sans-serif; background-color: #f3f4f6; padding: 20px;">
 
+    @extends('template')
+
     <header style="max-width: 768px; margin: 0 auto 20px;">
         <h1 style="font-weight: 600; font-size: 1.5rem; color: #1f2937;">Novo Tipo de Despesa</h1>
     </header>

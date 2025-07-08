@@ -124,7 +124,7 @@
                         <li><a class="dropdown-item" href="/fornecedor">Fornecedor</a></li>
                         <li><a class="dropdown-item" href="/contas_pagar">Contas a Pagar</a></li>
                         <li><a class="dropdown-item" href="/tipo_despesa">Tipo de Despesa</a></li>
-                        <li><a class="dropdown-item" href="#">Baixa de Conta</a></li>
+                        <li><a class="dropdown-item" href="/compra">Compra Interna</a></li>
                     </ul>
                 </li>                
                 <li class="nav-item dropdown">
