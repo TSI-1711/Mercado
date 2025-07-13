@@ -55,3 +55,6 @@ Route::get('/', function () {
 
 // Rotas para Clientes
 Route::resource('clientes', ClienteController::class);
+
+Route::resource('vendas', VendaController::class)->except(['edit', 'update']);
+Route::post('vendas/{venda}/gerar-pagamento', [VendaController::class, 'gerarPagamento'])->name('vendas.gerar-pagamento');
