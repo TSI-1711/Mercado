@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Nivel_acessoController;
 use App\Http\Controllers\ContaReceberController;
+use PgSql\Result;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,9 +17,9 @@ use App\Http\Controllers\ContaReceberController;
 */
 
 // Rotas para o gerenciamento de contas a receber
-route::get('/contas_receber', [ContaReceberController::class, 'index']);
-route::patch('contas-receber/{id}/baixa', [ContaReceberController::class, 'baixa'])->name('contas-receber.baixa');
-Route::get('contas-receber-vencidas', [ContaReceberController::class, 'vencidas'])->name('contas-receber.vencidas');
+Route::get('/contas-receber', [ContaReceberController::class, 'index']);
+Route::patch('contas-receber/{id}/baixa', [ContaReceberController::class, 'baixa'])->name('contas-receber.baixa');
+Route::get('contas-receber', [ContaReceberController::class, 'vencidas'])->name('contas-receber.contasVencidas');
 //
 
 

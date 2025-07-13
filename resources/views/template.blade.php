@@ -12,7 +12,7 @@
             body {
                 min-height: 75rem;
                 padding-top: 4.5rem;
-            }        
+            }
             .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -105,7 +105,7 @@
     </style>
 </head>
 
-<body> 
+<body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid"> <a class="navbar-brand" href="#">Mercado</a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -122,7 +122,7 @@
                         <li><a class="dropdown-item" href="#">Ordem Compra</a></li>
                         <li><a class="dropdown-item" href="#">Entrada</a></li>
                     </ul>
-                </li>                
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Contas Pagar
@@ -132,7 +132,7 @@
                         <li><a class="dropdown-item" href="#">Contas a Pagar</a></li>
                         <li><a class="dropdown-item" href="#">Baixa de Conta</a></li>
                     </ul>
-                </li>                
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Venda
@@ -141,7 +141,7 @@
                         <li><a class="dropdown-item" href="#">Cliente</a></li>
                         <li><a class="dropdown-item" href="#">Venda</a></li>
                     </ul>
-                </li>                
+                </li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -149,9 +149,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Baixa</a></li>
-                        <li><a class="dropdown-item" href="#">Consulta</a></li>
+                        <li><a class="dropdown-item" href="{{ route('contas-receber.vencidas') }}">Consulta</a></li>
                     </ul>
-                </li>    
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Folha Pagamento
@@ -170,7 +170,7 @@
     <main class="container">
         @yield('conteudo')
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
 
 </html>

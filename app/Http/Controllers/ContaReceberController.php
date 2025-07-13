@@ -27,7 +27,7 @@ class ContaReceberController extends Controller
         ->where('status', '!=', 'recebido')
         ->get();
 
-    return view('contas_receber.vencidas', compact('contas'));
+    return view('contas_receber.contasCencidas', compact('contas'));
 }
 
 }
