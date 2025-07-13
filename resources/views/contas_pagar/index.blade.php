@@ -10,9 +10,10 @@
     @extends('template')
 
     <div style="max-width: 1200px; margin: 0 auto;">
-        <header style="margin-bottom: 20px;">
-            <h1 style="font-weight: 600; font-size: 1.5rem; color: #1f2937;">Contas a Pagar</h1>
+        <header style="margin-bottom: 20px; margin-top: 60px;">
+            <h1 style="font-weight: 600; font-size: 1.5rem; color: #1f2937;">Lista de Contas a Pagar</h1>
         </header>
+        
 
         <a href="{{ route('contas_pagar.create') }}" style="background-color: #3b82f6; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-bottom: 20px;">
             Nova Conta a Pagar
@@ -22,7 +23,7 @@
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr style="background-color: #f9fafb; text-align: left;">
-                        <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Tipo</th>
+                        <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Tipo de Despesa</th>
                         <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Valor</th>
                         <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Vencimento</th>
                         <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Status</th>
@@ -33,17 +34,15 @@
                 <tbody>
                     @forelse ($contas as $conta)
                         <tr style="border-bottom: 1px solid #e5e7eb;">
-                            <td style="padding: 12px 16px;">{{ $conta->tipoDespesa->nome }}</td>
+                            <td style="padding: 12px 16px;">{{ optional($conta->tipoDespesa)->nome ?? 'Tipo apagado' }}</td>
                             <td style="padding: 12px 16px;">R$ {{ number_format($conta->valor, 2, ',', '.') }}</td>
                             <td style="padding: 12px 16px;">{{ \Carbon\Carbon::parse($conta->data_vencimento)->format('d/m/Y') }}</td>
                             <td style="padding: 12px 16px;">
-                                <span style="background-color: {{ $conta->pago ? '#10b981' : '#ef4444' }}; color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.75rem;">
+                                <span style="display: inline-block; background-color: {{ $conta->pago ? '#10b981' : '#ef4444' }}; color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.75rem; min-width: 70px; text-align: center;">
                                     {{ $conta->pago ? 'Pago' : 'Pendente' }}
                                 </span>
                             </td>
-                            <td style="padding: 12px 16px;">
-                                {{ $conta->compra_id ? 'Compra #'.$conta->compra_id : '-' }}
-                            </td>
+                            <td style="padding: 12px 16px;">{{ $conta->compra_id ? 'ID: '.$conta->compra_id : '-' }}</td>
                             <td style="padding: 12px 16px;">
                                 <a href="{{ route('contas_pagar.edit', $conta->id) }}" style="background-color: #f59e0b; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.875rem; display: inline-block; margin-right: 8px;">Editar</a>
 

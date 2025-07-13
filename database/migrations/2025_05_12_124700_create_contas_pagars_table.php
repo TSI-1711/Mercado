@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('contas_pagars', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('compra_id')->nullable();
-            $table->unsignedBigInteger('tipo_despesa_id');
+            $table->unsignedBigInteger('tipo_despesa_id')->nullable(); // nullable aqui
             $table->date('data_vencimento');
             $table->decimal('valor', 10, 2);
             $table->boolean('pago')->default(false);
             $table->timestamps();
-
+        
             $table->foreign('compra_id')->references('id')->on('compra')->onDelete('set null');
-            $table->foreign('tipo_despesa_id')->references('id')->on('tipo_despesa')->onDelete('restrict');
+            $table->foreign('tipo_despesa_id')->references('id')->on('tipo_despesa')->onDelete('set null'); // set null aqui
         });
     }
 

@@ -10,7 +10,7 @@
     @extends('template')
 
     <div style="max-width: 1200px; margin: 0 auto;">
-        <header style="margin-bottom: 20px;">
+        <header style="margin-bottom: 20px; margin-top: 60px;">
             <h1 style="font-weight: 600; font-size: 1.5rem; color: #1f2937;">Lista de Tipos de Despesa</h1>
         </header>
 

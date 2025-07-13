@@ -37,4 +37,6 @@ Route::get('/', function () {
     return view('home');
 });
 
+
+
 //Route::get('/nivel_acesso', [Nivel_acessoController::class, 'listar']);

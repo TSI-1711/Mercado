@@ -5,7 +5,7 @@
     <title>Editar Fornecedor</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
 </head>
-<body style="font-family: sans-serif; background-color: #f3f4f6; padding: 20px;">
+<body style="font-family: sans-serif; background-color: #f3f4f6; padding: 20px; margin-top: 60px;">
 
     @extends('template')
 

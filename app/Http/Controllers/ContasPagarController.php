@@ -45,11 +45,11 @@ class ContasPagarController extends Controller
     public function update(Request $request, ContasPagar $contas_pagar)
     {
         $request->validate([
-            'compra_id' => 'nullable|exists:compras,id',         // corrigido de 'compra' para 'compras'
-            'tipo_despesa_id' => 'required|exists:tipo_despesas,id',  // corrigido de 'tipo_despesa' para 'tipo_despesas'
+            'compra_id' => 'nullable|exists:compras,id',         
+            'tipo_despesa_id' => 'required|exists:tipo_despesas,id', 
             'data_vencimento' => 'required|date',
             'valor' => 'required|numeric',
-            'pago' => 'nullable|boolean', // se incluir o campo pago no formulário
+            'pago' => 'sometimes|boolean', 
         ]);
 
         $contas_pagar->update($request->all());

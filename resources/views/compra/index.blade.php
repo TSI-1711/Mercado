@@ -11,8 +11,8 @@
     @extends('template')
 
     <div style="max-width: 1200px; margin: 0 auto;">
-        <header style="margin-bottom: 20px;">
-            <h1 style="font-weight: 600; font-size: 1.5rem; color: #1f2937;">Lista de Compras</h1>
+        <header style="margin-bottom: 20px; margin-top: 60px;">
+            <h1 style="font-weight: 600; font-size: 1.5rem; color: #1f2937;">Lista de Compras Internas</h1>
         </header>
 
         <a href="{{ route('compra.create') }}" style="background-color: #3b82f6; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; margin-bottom: 20px;">
@@ -31,7 +31,7 @@
                     <tr style="background-color: #f9fafb; text-align: left;">
                         <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">ID</th>
                         <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Fornecedor</th>
-                        <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Data</th>
+                        <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Data da Compra</th>
                         <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Descrição</th>
                         <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Valor Total</th>
                         <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Ações</th>

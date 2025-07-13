@@ -9,8 +9,8 @@
 
     @extends('template')
 
-    <header style="max-width: 768px; margin: 0 auto;">
-        <h1 style="font-size: 1.5rem; font-weight: 600; color: #1f2937; margin-bottom: 20px;">Editar Compra</h1>
+    <header style="max-width: 768px; margin: 0 auto; margin-top: 60px;">
+        <h1 style="font-size: 1.5rem; font-weight: 600; color: #1f2937; margin-bottom: 20px;">Editar Compra Interna</h1>
     </header>
 
     <main style="max-width: 768px; margin: 0 auto;">

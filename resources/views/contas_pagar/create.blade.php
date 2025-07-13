@@ -9,7 +9,7 @@
 
     @extends('template')
 
-    <header style="max-width: 768px; margin: 0 auto 20px;">
+    <header style="max-width: 768px; margin: 0 auto 20px; margin-top: 60px;">
         <h1 style="font-size: 1.5rem; font-weight: 600; color: #1f2937;">Nova Conta a Pagar</h1>
     </header>
 
@@ -19,10 +19,10 @@
 
             <div>
                 <label>Compra (opcional):</label>
-                <select name="compra_id" class="w-full rounded border-gray-300" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;">
+                <select name="compra_id" id="compra_id" class="w-full rounded border-gray-300" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;">
                     <option value="">-- Nenhuma --</option>
                     @foreach($compras as $compra)
-                        <option value="{{ $compra->id }}">{{ $compra->id }} - {{ $compra->data }}</option>
+                        <option value="{{ $compra->id }}">{{ $compra->id }} - {{ $compra->descricao }}</option>
                     @endforeach
                 </select>
             </div>
@@ -38,12 +38,12 @@
 
             <div>
                 <label>Valor:</label>
-                <input type="number" name="valor" step="0.01" required class="w-full rounded border-gray-300" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;">
+                <input type="number" name="valor" id="valor" step="0.01" required class="w-full rounded border-gray-300" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;">
             </div>
 
             <div>
                 <label>Data de Vencimento:</label>
-                <input type="date" name="data_vencimento" required class="w-full rounded border-gray-300" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;">
+                <input type="date" name="data_vencimento" id="data_vencimento" required class="w-full rounded border-gray-300" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;">
             </div>
 
             <div>
@@ -57,5 +57,28 @@
         </form>
     </main>
 
+    <script>
+        document.getElementById('compra_id').addEventListener('change', function () {
+            const compraId = this.value;
+
+            if (!compraId) {
+                document.getElementById('valor').value = '';
+                document.getElementById('data_vencimento').value = '';
+                return;
+            }
+
+            fetch(`/compra/${compraId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('valor').value = data.valor || '';
+                    document.getElementById('data_vencimento').value = data.data || '';
+                })
+                .catch(() => {
+                    document.getElementById('valor').value = '';
+                    document.getElementById('data_vencimento').value = '';
+                });
+        });
+    </script>
+
 </body>
-</html
+</html>

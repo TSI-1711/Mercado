@@ -9,7 +9,7 @@
 
     @extends('template')
 
-    <header style="max-width: 768px; margin: 0 auto 20px;">
+    <header style="max-width: 768px; margin: 0 auto 20px; margin-top: 60px;">
         <h1 style="font-weight: 600; font-size: 1.5rem; color: #1f2937;">Novo Fornecedor</h1>
     </header>
 

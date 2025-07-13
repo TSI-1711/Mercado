@@ -9,7 +9,7 @@
 
     @extends('template')
 
-    <header style="max-width: 768px; margin: 0 auto;">
+    <header style="max-width: 768px; margin: 0 auto; margin-top: 60px;">
         <h1 style="font-size: 1.5rem; font-weight: 600; color: #1f2937; margin-bottom: 20px;">Editar Conta a Pagar</h1>
     </header>
 
@@ -36,7 +36,7 @@
                     <option value="">-- Nenhuma --</option>
                     @foreach($compras as $compra)
                         <option value="{{ $compra->id }}" {{ (old('compra_id', $contas_pagar->compra_id) == $compra->id) ? 'selected' : '' }}>
-                            {{ $compra->descricao }} - {{ \Carbon\Carbon::parse($compra->data_compra)->format('d/m/Y') }}
+                        {{ $compra->id }} - {{ $compra->descricao }}
                         </option>
                     @endforeach
                 </select>
@@ -64,17 +64,20 @@
                 <input name="data_vencimento" id="data_vencimento" type="date" value="{{ old('data_vencimento', $contas_pagar->data_vencimento ? $contas_pagar->data_vencimento->format('Y-m-d') : '') }}" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;" required>
             </div>
 
-            <div>
-                <label for="pago" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 500; font-size: 0.875rem; color: #374151;">
+
+            <div style="margin-bottom: 16px;">
+                <input type="hidden" name="pago" value="0">
+                
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
                     <input
                         type="checkbox"
                         name="pago"
                         id="pago"
                         value="1"
-                        {{ old('pago', $contas_pagar->pago) ? 'checked' : '' }}
+                        {{ $contas_pagar->pago ? 'checked' : '' }}
                         style="width: 16px; height: 16px;"
                     />
-                    Pago
+                    <span>Marcar como pago</span>
                 </label>
             </div>
 
