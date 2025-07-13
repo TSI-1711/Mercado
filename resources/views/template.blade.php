@@ -143,8 +143,8 @@
                         Contas Receber
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Baixa</a></li>
-                        <li><a class="dropdown-item" href="{{ route('contas-receber.vencidas') }}">Consulta</a></li>
+                        <li><a class="dropdown-item" href="{{ route('contas-receber.recebidas') }}">Recebidas (Pagas)</a></li>
+                        <li><a class="dropdown-item" href="{{ route('contas-receber.vencidas') }}">Vencidas</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -163,9 +163,10 @@
         </div>
     </nav>
     <main class="container">
-        @yield('content')
+        @yield('conteudo')
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    @stack('scripts')
 </body>
 
 </html>

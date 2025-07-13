@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('content')
+@section('conteudo')
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-12">
@@ -42,20 +42,20 @@
                                         <td>{{ $cliente->cidade ?? '-' }}</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="{{ route('clientes.show', $cliente) }}" 
+                                                <a href="{{ route('clientes.show', $cliente) }}"
                                                    class="btn btn-sm btn-info" title="Visualizar">
                                                     <i class="bi bi-eye"></i>
                                                 </a>
-                                                <a href="{{ route('clientes.edit', $cliente) }}" 
+                                                <a href="{{ route('clientes.edit', $cliente) }}"
                                                    class="btn btn-sm btn-warning" title="Editar">
                                                     <i class="bi bi-pencil"></i>
                                                 </a>
-                                                <form action="{{ route('clientes.destroy', $cliente) }}" 
+                                                <form action="{{ route('clientes.destroy', $cliente) }}"
                                                       method="POST" style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger" 
-                                                            title="Remover" 
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                            title="Remover"
                                                             onclick="return confirm('Tem certeza que deseja remover este cliente?')">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
@@ -79,4 +79,4 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection

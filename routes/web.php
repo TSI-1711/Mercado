@@ -24,10 +24,6 @@ use PgSql\Result;
 |
 */
 
-// Rotas para o gerenciamento de contas a receber
-Route::get('/contas-receber', [ContaReceberController::class, 'index']);
-Route::patch('contas-receber/{id}/baixa', [ContaReceberController::class, 'baixa'])->name('contas-receber.baixa');
-Route::get('contas-receber', [ContaReceberController::class, 'vencidas'])->name('contas-receber.contasVencidas');
 //
 
 
@@ -38,9 +34,6 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::resource('produtos', ProdutoController::class);
 });
-Route::middleware('auth')->group(function () {
-    Route::resource('products', ProductController::class);
-});
 
 
 Route::resource('fornecedor', FornecedorController::class);
@@ -50,7 +43,12 @@ Route::resource('tipo_despesa', TipoDespesaController::class);
 Route::resource('clientes', ClienteController::class);
 Route::resource('vendas', VendaController::class)->except(['edit', 'update']);
 
-Route::get('/contas_receber', [ContaReceberController::class, 'index']);
-Route::patch('contas-receber/{id}/baixa', [ContaReceberController::class, 'baixa'])->name('contas-receber.baixa');
-Route::get('contas-receber-vencidas', [ContaReceberController::class, 'vencidas'])->name('contas-receber.vencidas');
 Route::post('vendas/{venda}/gerar-pagamento', [VendaController::class, 'gerarPagamento'])->name('vendas.gerar-pagamento');
+
+Route::prefix('contas-receber')->name('contas-receber.')->group(function () {
+    Route::get('/recebidas', [ContaReceberController::class, 'recebidas'])->name('recebidas');
+    Route::get('/vencidas', [ContaReceberController::class, 'vencidas'])->name('vencidas');
+    Route::get('/{id}/pagar', [ContaReceberController::class, 'pagamento'])->name('pagamento');
+    Route::post('/{id}/pagar', [ContaReceberController::class, 'confirmarPagamento'])->name('confirmar-pagamento');
+    Route::post('/{id}/marcar-vencida', [ContaReceberController::class, 'marcarComoVencida'])->name('marcar-vencida');
+});

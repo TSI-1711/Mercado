@@ -10,7 +10,7 @@ class Venda extends Model
     use HasFactory;
 
     protected $table = 'vendas';
-    
+
     protected $fillable = [
         'cliente_id',
         'produto_id',
@@ -37,4 +37,9 @@ class Venda extends Model
     {
         return $this->belongsTo(Produto::class);
     }
-} 
+
+    public function contaReceber()
+    {
+        return $this->hasOne(ContaReceber::class);
+    }
+}

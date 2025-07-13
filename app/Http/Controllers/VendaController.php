@@ -12,7 +12,7 @@ class VendaController extends Controller
 {
     public function index()
     {
-        $vendas = Venda::with(['cliente', 'produto'])->orderBy('created_at', 'desc')->get();
+        $vendas = Venda::with(['cliente', 'produto', 'contaReceber'])->orderBy('created_at', 'desc')->get();
         return view('vendas.index', compact('vendas'));
     }
 
@@ -50,6 +50,13 @@ class VendaController extends Controller
                 'valor_total' => $valorTotal,
                 'status' => 'pendente',
                 'observacoes' => $request->observacoes
+            ]);
+                \App\Models\ContaReceber::create([
+                'venda_id' => $venda->id,
+                'cliente_id' => $venda->cliente_id,
+                'valor' => $venda->valor_total,
+                'data_vencimento' => now()->addSeconds(30), // ou defina a regra de vencimento
+                'status' => 'aberto',
             ]);
 
             $produto = Produto::find($request->produto_id);
@@ -93,6 +100,12 @@ class VendaController extends Controller
 
     public function gerarPagamento(Venda $venda)
     {
-        return back()->with('info', 'Funcionalidade de pagamento será implementada em breve!');
+        $conta = \App\Models\ContaReceber::where('venda_id', $venda->id)->first();
+
+        if ($conta) {
+            return redirect()->route('contas-receber.pagamento', $conta->id);
+        }
+
+        return back()->with('error', 'Não foi encontrada uma conta a receber para esta venda.');
     }
-} 
+}

@@ -1,12 +1,13 @@
-{{-- filepath: resources/views/contas_receber/contasVencidas.blade.php --}}
 @extends('template')
 
 @section('conteudo')
 <div class="container py-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="text-danger">Contas Vencidas</h2>
-        <a href="{{ route('contas-receber.index') }}" class="btn btn-secondary">Voltar</a>
-    </div>
+    <h2>Contas Vencidas (Não Pagas)</h2>
+    @if(request()->get('timeout'))
+        <div class="alert alert-danger">
+            O tempo para pagamento expirou e a conta foi marcada como vencida.
+        </div>
+    @endif
     <table class="table table-striped table-bordered align-middle">
         <thead class="table-danger">
             <tr>
@@ -15,6 +16,7 @@
                 <th>Valor</th>
                 <th>Vencimento</th>
                 <th>Status</th>
+                <th>Ação</th>
             </tr>
         </thead>
         <tbody>
@@ -24,13 +26,14 @@
                 <td>{{ $conta->cliente->nome ?? $conta->cliente_id }}</td>
                 <td>R$ {{ number_format($conta->valor, 2, ',', '.') }}</td>
                 <td>{{ \Carbon\Carbon::parse($conta->data_vencimento)->format('d/m/Y') }}</td>
+                <td><span class="badge bg-danger">Vencido</span></td>
                 <td>
-                    <span class="badge bg-danger">Vencido</span>
+                    <a href="{{ route('contas-receber.pagamento', $conta->id) }}" class="btn btn-primary btn-sm">Gerar Pagamento</a>
                 </td>
             </tr>
         @empty
             <tr>
-                <td colspan="5" class="text-center">Nenhuma conta vencida encontrada.</td>
+                <td colspan="6" class="text-center">Nenhuma conta vencida encontrada.</td>
             </tr>
         @endforelse
         </tbody>

@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('content')
+@section('conteudo')
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -11,14 +11,18 @@
                         <a href="{{ route('vendas.index') }}" class="btn btn-secondary">
                             <i class="fas fa-arrow-left"></i> Voltar
                         </a>
-                        @if($venda->status == 'pendente')
-                            <form action="{{ route('vendas.gerar-pagamento', $venda) }}" method="POST" style="display: inline;">
-                                @csrf
-                                <button type="submit" class="btn btn-success">
-                                    <i class="fas fa-credit-card"></i> Gerar Pagamento
-                                </button>
-                            </form>
-                        @endif
+                        @php
+                    $conta = \App\Models\ContaReceber::where('cliente_id', $venda->cliente_id)
+                        ->where('valor', $venda->valor_total)
+                        ->orderByDesc('id')
+                        ->first();
+                @endphp
+
+                @if($conta && $conta->status !== 'recebido')
+                    <a href="{{ route('contas-receber.pagamento', $conta->id) }}" class="btn btn-primary">Gerar Pagamento</a>
+                @elseif($conta && $conta->status === 'recebido')
+                    <span class="badge bg-success">Pago</span>
+                @endif
                     </div>
                 </div>
                 <div class="card-body">
@@ -54,7 +58,7 @@
                                 @endif
                             </table>
                         </div>
-                        
+
                         <div class="col-md-6">
                             <h5>Informações do Cliente</h5>
                             <table class="table table-borderless">
@@ -114,4 +118,4 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection

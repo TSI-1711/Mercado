@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('content')
+@section('conteudo')
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -26,7 +26,7 @@
 
                     <form action="{{ route('vendas.store') }}" method="POST">
                         @csrf
-                        
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -41,7 +41,7 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="data_venda">Data da Venda *</label>
@@ -72,21 +72,21 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="quantidade">Quantidade *</label>
                                     <input type="number" name="quantidade" id="quantidade" class="form-control" min="1" required>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="preco_unitario">Preço Unitário *</label>
                                     <input type="number" name="preco_unitario" id="preco_unitario" class="form-control" step="0.01" min="0" required>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="subtotal">Subtotal</label>
@@ -146,10 +146,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const qtd = parseFloat(quantidade.value) || 0;
         const preco = parseFloat(precoUnitario.value) || 0;
         const subtotalValue = qtd * preco;
-        
+
         subtotal.value = subtotalValue.toFixed(2);
         valorTotal.value = 'R$ ' + subtotalValue.toFixed(2);
     }
 });
 </script>
-@endsection 
+@endsection

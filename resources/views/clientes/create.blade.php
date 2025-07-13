@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('content')
+@section('conteudo')
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -14,11 +14,11 @@
                 <div class="card-body">
                     <form action="{{ route('clientes.store') }}" method="POST">
                         @csrf
-                        
+
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label for="nome" class="form-label">Nome *</label>
-                                <input type="text" class="form-control @error('nome') is-invalid @enderror" 
+                                <input type="text" class="form-control @error('nome') is-invalid @enderror"
                                        id="nome" name="nome" value="{{ old('nome') }}" required>
                                 @error('nome')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -29,7 +29,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" 
+                                <input type="email" class="form-control @error('email') is-invalid @enderror"
                                        id="email" name="email" value="{{ old('email') }}">
                                 @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="telefone" class="form-label">Telefone</label>
-                                <input type="text" class="form-control @error('telefone') is-invalid @enderror" 
+                                <input type="text" class="form-control @error('telefone') is-invalid @enderror"
                                        id="telefone" name="telefone" value="{{ old('telefone') }}">
                                 @error('telefone')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -48,7 +48,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="cpf_cnpj" class="form-label">CPF/CNPJ</label>
-                                <input type="text" class="form-control @error('cpf_cnpj') is-invalid @enderror" 
+                                <input type="text" class="form-control @error('cpf_cnpj') is-invalid @enderror"
                                        id="cpf_cnpj" name="cpf_cnpj" value="{{ old('cpf_cnpj') }}">
                                 @error('cpf_cnpj')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -56,7 +56,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="cep" class="form-label">CEP</label>
-                                <input type="text" class="form-control @error('cep') is-invalid @enderror" 
+                                <input type="text" class="form-control @error('cep') is-invalid @enderror"
                                        id="cep" name="cep" value="{{ old('cep') }}">
                                 @error('cep')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -67,7 +67,7 @@
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label for="endereco" class="form-label">Endereço</label>
-                                <input type="text" class="form-control @error('endereco') is-invalid @enderror" 
+                                <input type="text" class="form-control @error('endereco') is-invalid @enderror"
                                        id="endereco" name="endereco" value="{{ old('endereco') }}">
                                 @error('endereco')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -78,7 +78,7 @@
                         <div class="row">
                             <div class="col-md-8 mb-3">
                                 <label for="cidade" class="form-label">Cidade</label>
-                                <input type="text" class="form-control @error('cidade') is-invalid @enderror" 
+                                <input type="text" class="form-control @error('cidade') is-invalid @enderror"
                                        id="cidade" name="cidade" value="{{ old('cidade') }}">
                                 @error('cidade')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label for="estado" class="form-label">Estado</label>
-                                <select class="form-select @error('estado') is-invalid @enderror" 
+                                <select class="form-select @error('estado') is-invalid @enderror"
                                         id="estado" name="estado">
                                     <option value="">Selecione...</option>
                                     <option value="AC" {{ old('estado') == 'AC' ? 'selected' : '' }}>Acre</option>
@@ -126,7 +126,7 @@
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label for="observacoes" class="form-label">Observações</label>
-                                <textarea class="form-control @error('observacoes') is-invalid @enderror" 
+                                <textarea class="form-control @error('observacoes') is-invalid @enderror"
                                           id="observacoes" name="observacoes" rows="3">{{ old('observacoes') }}</textarea>
                                 @error('observacoes')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -144,4 +144,4 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection

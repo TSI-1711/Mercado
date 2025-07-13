@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('content')
+@section('conteudo')
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -57,15 +57,19 @@
                                     <td>R$ {{ number_format($venda->subtotal, 2, ',', '.') }}</td>
                                     <td>{{ $venda->data_venda->format('d/m/Y') }}</td>
                                     <td>
-                                        <span class="badge badge-{{ $venda->status == 'pendente' ? 'warning' : ($venda->status == 'pago' ? 'success' : 'danger') }}">
-                                            {{ ucfirst($venda->status) }}
-                                        </span>
+                                        @if($venda->contaReceber)
+                                            <span class="badge bg-{{ $venda->contaReceber->status == 'aberto' ? 'warning' : ($venda->contaReceber->status == 'recebido' ? 'success' : 'danger') }}">
+                                                {{ ucfirst($venda->contaReceber->status) }}
+                                            </span>
+                                        @else
+                                            <span class="badge bg-secondary">N/A</span>
+                                        @endif
                                     </td>
                                     <td>
                                         <a href="{{ route('vendas.show', $venda) }}" class="btn btn-sm btn-info">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        @if($venda->status == 'pendente')
+                                        @if($venda->contaReceber && $venda->contaReceber->status == 'aberto')
                                             <form action="{{ route('vendas.gerar-pagamento', $venda) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 <button type="submit" class="btn btn-sm btn-success">
@@ -94,4 +98,4 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection
