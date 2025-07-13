@@ -2,59 +2,31 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Nivel_acessoController;
-<<<<<<< HEAD
-<<<<<<< HEAD
 use App\Http\Controllers\ContaReceberController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ContasPagarController;
 use App\Http\Controllers\TipoDespesaController;
-use App\Http\Controllers\ProductController;
-
-=======
+use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ClienteController;
->>>>>>> f6cc68e (feat: implementa sistema de cadastro de clientes)
-=======
-use App\Http\Controllers\ClienteController;
->>>>>>> f6cc68e38b9d5b3632d7119a5395a26a926e13f6
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-//Rotas para compras
-Route::middleware('auth')->group(function () {
-    Route::resource('products', ProductController::class);
-});
-
-// Rotas para o gerenciamento de contas a receber
-route::get('/contas_receber', [ContaReceberController::class, 'index']);
-route::patch('contas-receber/{id}/baixa', [ContaReceberController::class, 'baixa'])->name('contas-receber.baixa');
-Route::get('contas-receber-vencidas', [ContaReceberController::class, 'vencidas'])->name('contas-receber.vencidas');
-//
-
-
-
-//Route::get('/nivel_acesso', [Nivel_acessoController::class, 'listar']);
-Route::resource('fornecedor', FornecedorController::class);
-Route::resource('compra', CompraController::class);
-Route::resource('contas_pagar', ContasPagarController::class);
-Route::resource('tipo_despesa', TipoDespesaController::class);
+use App\Http\Controllers\VendaController;
 
 Route::get('/', function () {
     return view('home');
 });
 
-//Route::get('/nivel_acesso', [Nivel_acessoController::class, 'listar']);
+Route::middleware('auth')->group(function () {
+    Route::resource('produtos', ProdutoController::class);
+});
 
-// Rotas para Clientes
+Route::resource('fornecedor', FornecedorController::class);
+Route::resource('compra', CompraController::class);
+Route::resource('contas_pagar', ContasPagarController::class);
+Route::resource('tipo_despesa', TipoDespesaController::class);
 Route::resource('clientes', ClienteController::class);
-
 Route::resource('vendas', VendaController::class)->except(['edit', 'update']);
+
+Route::get('/contas_receber', [ContaReceberController::class, 'index']);
+Route::patch('contas-receber/{id}/baixa', [ContaReceberController::class, 'baixa'])->name('contas-receber.baixa');
+Route::get('contas-receber-vencidas', [ContaReceberController::class, 'vencidas'])->name('contas-receber.vencidas');
 Route::post('vendas/{venda}/gerar-pagamento', [VendaController::class, 'gerarPagamento'])->name('vendas.gerar-pagamento');
