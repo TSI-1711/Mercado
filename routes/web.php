@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Nivel_acessoController;
 <<<<<<< HEAD
+<<<<<<< HEAD
 use App\Http\Controllers\ContaReceberController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\CompraController;
@@ -13,6 +14,9 @@ use App\Http\Controllers\ProductController;
 =======
 use App\Http\Controllers\ClienteController;
 >>>>>>> f6cc68e (feat: implementa sistema de cadastro de clientes)
+=======
+use App\Http\Controllers\ClienteController;
+>>>>>>> f6cc68e38b9d5b3632d7119a5395a26a926e13f6
 /*
 |--------------------------------------------------------------------------
 | Web Routes
