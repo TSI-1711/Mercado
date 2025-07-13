@@ -10,6 +10,7 @@ use App\Http\Controllers\TipoDespesaController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\VendaController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('home');
@@ -18,6 +19,10 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::resource('produtos', ProdutoController::class);
 });
+Route::middleware('auth')->group(function () {
+    Route::resource('products', ProductController::class);
+});
+
 
 Route::resource('fornecedor', FornecedorController::class);
 Route::resource('compra', CompraController::class);
