@@ -27,7 +27,7 @@ return new class extends Migration
             $table->decimal('fgts', 10, 2);
             $table->decimal('salario_liquido', 10, 2);
             $table->date('data_geracao');
-            $table->date('data_pagamento');
+            $table->date('data_pagamento')->nullable();
             $table->enum('status', ['gerada', 'paga', 'cancelada'])->default('gerada');
             $table->timestamps();
 

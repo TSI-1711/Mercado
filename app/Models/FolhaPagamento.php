@@ -55,8 +55,4 @@ class FolhaPagamento extends Model
         return $this->hasMany(Ocorrencias::class);
     }
 
-    public function contasPagar()
-    {
-        return $this->hasMany(ContasAPagar::class);
-    }
 }

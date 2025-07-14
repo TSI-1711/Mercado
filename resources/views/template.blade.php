@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mercado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     </head>
     <style>
             /* Show it is fixed to the top */
@@ -94,6 +95,43 @@
             display: block !important
         }
 
+        /* Estilos personalizados para paginação */
+        .pagination {
+            margin-bottom: 0;
+        }
+        
+        .pagination .page-link {
+            border-radius: 0.375rem;
+            margin: 0 2px;
+            border: 1px solid #dee2e6;
+            color: #6c757d;
+            font-size: 0.875rem;
+            padding: 0.375rem 0.75rem;
+            transition: all 0.15s ease-in-out;
+        }
+        
+        .pagination .page-link:hover {
+            background-color: #e9ecef;
+            border-color: #dee2e6;
+            color: #495057;
+        }
+        
+        .pagination .page-item.active .page-link {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            color: white;
+        }
+        
+        .pagination .page-item.disabled .page-link {
+            color: #6c757d;
+            background-color: #fff;
+            border-color: #dee2e6;
+        }
+        
+        .pagination .page-link:focus {
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        }
+
 
     </style>
 </head>
@@ -147,12 +185,14 @@
                 </li>    
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Folha Pagamento
+                        Folha de Pagamento
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Funcionário</a></li>
-                        <li><a class="dropdown-item" href="#">Ocorrência</a></li>
-                        <li><a class="dropdown-item" href="#">Gerar Folha</a></li>
+                        <li><a class="dropdown-item" href="{{ route('funcionarios.index') }}">Funcionários</a></li>
+                        <li><a class="dropdown-item" href="{{ route('ocorrencias.index') }}">Ocorrências</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ route('folhaPagamento.index') }}">Folhas de Pagamento</a></li>
+                        <li><a class="dropdown-item" href="{{ route('folhaPagamento.create') }}">Gerar Folha</a></li>
                     </ul>
                 </li>
 
@@ -160,8 +200,8 @@
             </div>
         </div>
     </nav>
-    <main class="container">
-        @yield('conteudo')
+    <main class="container-fluid">
+        @yield('content')
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>    
 </body>

@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Nivel_acessoController;
+use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\OcorrenciasController;
+use App\Http\Controllers\FolhaPagamentoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +21,13 @@ Route::get('/', function () {
 });
 
 //Route::get('/nivel_acesso', [Nivel_acessoController::class, 'listar']);
+
+// Rotas para Funcionários
+Route::resource('funcionarios', FuncionarioController::class);
+
+// Rotas para Ocorrências
+Route::resource('ocorrencias', OcorrenciasController::class);
+
+// Rotas para Folha de Pagamento
+Route::post('folhaPagamento/gerar', [FolhaPagamentoController::class, 'gerarFolha'])->name('folhaPagamento.gerar');
+Route::resource('folhaPagamento', FolhaPagamentoController::class);

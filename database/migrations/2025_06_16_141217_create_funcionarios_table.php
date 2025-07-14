@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nome');
             $table->string('cpf')->unique();
             $table->string('rg')->nullable();
-            $table->date('data_nascimento');
+            $table->date('data_nascimento')->nullable();
             $table->string('telefone');
             $table->string('email')->unique();
             $table->string('cargo');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('banco')->nullable();
             $table->string('agencia')->nullable();
             $table->string('conta')->nullable();
-            $table->date('data_admissao');
+            $table->date('data_admissao')->nullable();
             $table->boolean('ativo')->default(true);
             $table->timestamps();
         });

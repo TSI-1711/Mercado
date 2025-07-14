@@ -54,7 +54,6 @@ class Ocorrencias extends Model
         return $this->belongsTo(FolhaPagamento::class);
     }
 
-    // Método para calcular horas automaticamente
     public function calcularHoras()
     {
         if ($this->hora_inicio && $this->hora_fim) {
