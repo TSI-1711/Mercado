@@ -23,9 +23,29 @@
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700">CNPJ:</label>
-                <input type="text" name="cnpj" style="margin-top: 4px; width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;">
-            </div>
+    <label class="block text-sm font-medium text-gray-700">CNPJ:</label>
+    <input 
+        type="text" 
+        name="cnpj" 
+        value="{{ old('cnpj') }}"
+        oninvalid="this.setCustomValidity('Esse CNPJ já foi cadastrado.')" 
+        oninput="this.setCustomValidity('')"
+        required
+        style="margin-top: 4px; width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;"
+    >
+    @error('cnpj')
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const cnpjInput = document.querySelector('input[name="cnpj"]');
+                if (cnpjInput) {
+                    cnpjInput.setCustomValidity('{{ $message }}');
+                    cnpjInput.reportValidity();
+                }
+            });
+        </script>
+    @enderror
+</div>
+            
 
             <div>
                 <label class="block text-sm font-medium text-gray-700">Endereço:</label>

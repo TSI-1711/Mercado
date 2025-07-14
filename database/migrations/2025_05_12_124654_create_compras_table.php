@@ -13,8 +13,9 @@ return new class extends Migration
 {
     Schema::create('compras', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('fornecedor_id')->constrained('fornecedors')->onDelete('cascade');
+        $table->foreignId('fornecedor_id')->nullable()->constrained('fornecedors')->onDelete('set null');
         $table->date('data_compra');
+        $table->date('data_vencimento');
         $table->string('descricao');
         $table->decimal('valor_total', 10, 2);
         $table->timestamps();

@@ -17,8 +17,12 @@ class ContasPagarController extends Controller
 
     public function create()
     {
-        $compras = Compra::all();
+        $compras = Compra::with('fornecedor')
+                    ->whereNotNull('data_vencimento')
+                    ->get();
+        
         $tipos = TipoDespesa::all();
+        
         return view('contas_pagar.create', compact('compras', 'tipos'));
     }
 

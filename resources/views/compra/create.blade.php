@@ -49,6 +49,11 @@
             </div>
 
             <div>
+                <label for="data_vencimento" style="display: block; font-weight: 500; font-size: 0.875rem; color: #374151;">Data do Vencimento:</label>
+                <input name="data_vencimento" id="data_vencimento" type="date" value="{{ old('data_vencimento') }}" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;" required>
+            </div>
+
+            <div>
                 <label for="valor_total" style="display: block; font-weight: 500; font-size: 0.875rem; color: #374151;">Valor Total:</label>
                 <input name="valor_total" id="valor_total" type="number" step="0.01" value="{{ old('valor_total') }}" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;" required>
             </div>

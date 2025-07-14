@@ -17,12 +17,25 @@
         <form method="POST" action="{{ route('contas_pagar.store') }}" style="background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgb(0 0 0 / 0.1); display: flex; flex-direction: column; gap: 16px;">
             @csrf
 
-            <div>
-                <label>Compra (opcional):</label>
-                <select name="compra_id" id="compra_id" class="w-full rounded border-gray-300" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;">
+            <div style="margin-bottom: 16px;">
+                <label style="display: block; margin-bottom: 4px; font-weight: 500;">Compra (opcional)</label>
+                <select name="compra_id" id="compra_id" class="w-full rounded border-gray-300" 
+                        style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;"
+                        onchange="atualizarValorCompra()">
                     <option value="">-- Nenhuma --</option>
                     @foreach($compras as $compra)
-                        <option value="{{ $compra->id }}">{{ $compra->id }} - {{ $compra->descricao }}</option>
+                        @php
+                            // Garante que a data seja um objeto Carbon antes de formatar
+                            $dataVencimento = is_string($compra->data_vencimento) 
+                                ? \Carbon\Carbon::parse($compra->data_vencimento)
+                                : $compra->data_vencimento;
+                        @endphp
+                        
+                        <option value="{{ $compra->id }}" 
+                                data-valor="{{ $compra->valor_total }}"
+                                data-vencimento="{{ $dataVencimento->format('Y-m-d') }}">
+                            {{ $compra->id }} - {{ $compra->descricao }} (R$ {{ number_format($compra->valor_total, 2, ',', '.') }})
+                        </option>
                     @endforeach
                 </select>
             </div>
@@ -36,14 +49,27 @@
                 </select>
             </div>
 
-            <div>
-                <label>Valor:</label>
-                <input type="number" name="valor" id="valor" step="0.01" required class="w-full rounded border-gray-300" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;">
+            <div style="margin-bottom: 16px;">
+                <label style="display: block; margin-bottom: 4px; font-weight: 500;">Valor</label>
+                <input 
+                    type="text" 
+                    name="valor" 
+                    id="valor"
+                    value="{{ old('valor') }}" 
+                    class="w-full rounded border-gray-300" 
+                    style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;" 
+                    required
+                >
             </div>
 
             <div>
                 <label>Data de Vencimento:</label>
-                <input type="date" name="data_vencimento" id="data_vencimento" required class="w-full rounded border-gray-300" style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;">
+                <input type="date" 
+                name="data_vencimento" 
+                id="data_vencimento"
+                value="{{ old('valor') }}"
+                required class="w-full rounded border-gray-300" 
+                style="width: 100%; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px;">
             </div>
 
             <div>
@@ -58,26 +84,28 @@
     </main>
 
     <script>
-        document.getElementById('compra_id').addEventListener('change', function () {
-            const compraId = this.value;
+        function atualizarValorCompra() {
+            const selectCompra = document.getElementById('compra_id');
+            const inputValor = document.getElementById('valor');
+            const inputDataVencimento = document.getElementById('data_vencimento');
+            
+            if(selectCompra.value) {
+                // Obtém o valor da compra e data de vencimento
+                const valorCompra = selectCompra.options[selectCompra.selectedIndex].getAttribute('data-valor');
+                const dataVencimento = selectCompra.options[selectCompra.selectedIndex].getAttribute('data-vencimento');
 
-            if (!compraId) {
-                document.getElementById('valor').value = '';
-                document.getElementById('data_vencimento').value = '';
-                return;
+                // Remove formatação para enviar ao servidor
+                inputValor.value = valorCompra; // Envia o valor cru (ex: 1234.56)
+
+                // Define a data de vencimento
+                if(dataVencimento) {
+                    inputDataVencimento.value = dataVencimento;
+                }
+            } else {
+                // Limpa os campos se nenhuma compra for selecionada
+                inputValor.value = '';
             }
-
-            fetch(`/compra/${compraId}`)
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('valor').value = data.valor || '';
-                    document.getElementById('data_vencimento').value = data.data || '';
-                })
-                .catch(() => {
-                    document.getElementById('valor').value = '';
-                    document.getElementById('data_vencimento').value = '';
-                });
-        });
+        }                               
     </script>
 
 </body>

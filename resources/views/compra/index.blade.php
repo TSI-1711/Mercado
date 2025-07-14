@@ -32,6 +32,7 @@
                         <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">ID</th>
                         <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Fornecedor</th>
                         <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Data da Compra</th>
+                        <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Data do Vencimento</th>
                         <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Descrição</th>
                         <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Valor Total</th>
                         <th style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Ações</th>
@@ -41,8 +42,9 @@
                     @forelse ($compras as $compra)
                         <tr style="border-bottom: 1px solid #e5e7eb;">
                             <td style="padding: 12px 16px;">{{ $compra->id }}</td>
-                            <td style="padding: 12px 16px;">{{ $compra->fornecedor->nome }}</td>
+                            <td style="padding: 12px 16px;">{{ optional($compra->fornecedor)->nome ?? 'Fornecedor excluído' }}</td>
                             <td style="padding: 12px 16px;">{{ \Carbon\Carbon::parse($compra->data_compra)->format('d/m/Y') }}</td>
+                            <td style="padding: 12px 16px;">{{ \Carbon\Carbon::parse($compra->data_vencimento)->format('d/m/Y') }}</td>
                             <td style="padding: 12px 16px;">{{ $compra->descricao }}</td>
                             <td style="padding: 12px 16px;">R$ {{ number_format($compra->valor_total, 2, ',', '.') }}</td>
                             <td style="padding: 12px 16px;">
