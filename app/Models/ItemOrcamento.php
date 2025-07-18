@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemOrcamento extends Model
 {
+    protected $fillable = [
+        'orcamento_id',
+        'produto_id',
+        'quantidade',
+        'preco_unitario'
+    ];
+
     // Um item de orçamento pertence a um orçamento
     public function orcamento()
     {

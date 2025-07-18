@@ -28,7 +28,7 @@ class FornecedorController extends Controller
             'email' => 'nullable|email|max:255',
         ]);
 
-        Fornecedor::create($request->all());
+        Fornecedor::create($request->except('_token'));
         return redirect()->route('fornecedor.index')->with('success', 'Fornecedor cadastrado com sucesso.');
     }
 
@@ -47,7 +47,7 @@ class FornecedorController extends Controller
             'email' => 'nullable|email|max:255',
         ]);
 
-        $fornecedor->update($request->all());
+        $fornecedor->update($request->except('_token'));
         return redirect()->route('fornecedor.index')->with('success', 'Fornecedor atualizado com sucesso.');
     }
 

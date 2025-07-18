@@ -110,10 +110,10 @@
                         Compra
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Produto</a></li>
-                        <li><a class="dropdown-item" href="#">Orçamento</a></li>
-                        <li><a class="dropdown-item" href="#">Ordem Compra</a></li>
-                        <li><a class="dropdown-item" href="#">Entrada</a></li>
+                        <li><a class="dropdown-item" href="{{ route('produtos.index') }}">Produtos</a></li>
+                        <li><a class="dropdown-item" href="{{ route('orcamentos.index') }}">Orçamentos</a></li>
+                        <li><a class="dropdown-item" href="{{ route('compras.index') }}">Ordens de Compra</a></li>
+                        <li><a class="dropdown-item" href="{{ route('entradas.index') }}">Entradas</a></li>
                     </ul>
                 </li>                
                 <li class="nav-item dropdown">

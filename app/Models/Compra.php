@@ -21,8 +21,16 @@ class Compra extends Model
     {
         return $this->hasMany(Entrada::class);
     }
+    
     public function orcamento()
     {
         return $this->belongsTo(Orcamento::class);
     }
+    
+    protected $fillable = [
+        'fornecedor_id',
+        'data_compra',
+        'valor_total',
+        'status'
+    ];
 }

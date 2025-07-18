@@ -19,5 +19,22 @@ class Produto extends Model
         return $this->hasMany(ItemCompra::class);
     }
     
-    // ... adicione outros relacionamentos se necessário (item_orcamento, item_entrada)
+    // Um produto pode estar em muitos itens de orçamento
+    public function itensOrcamento()
+    {
+        return $this->hasMany(ItemOrcamento::class);
+    }
+    
+    // Um produto pode estar em muitos itens de entrada
+    public function itensEntrada()
+    {
+        return $this->hasMany(ItemEntrada::class);
+    }
+    
+    protected $fillable = [
+        'nome',
+        'descricao',
+        'preco_custo',
+        'estoque'
+    ];
 }

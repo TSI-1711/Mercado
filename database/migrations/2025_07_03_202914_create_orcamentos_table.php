@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orcamentos', function (Blueprint $table) {
-    $table->id();
-    $table->foreignId('fornecedor_id')->constrained('fornecedores');
-    $table->date('data_orcamento');
-    $table->decimal('valor_total', 10, 2)->nullable();
-    $table->string('status')->default('pendente'); // ex: pendente, aprovado, rejeitado
-    $table->timestamps();
-});
+            $table->id();
+            $table->foreignId('fornecedor_id')->constrained('fornecedores')->onDelete('cascade');
+            $table->date('data_orcamento');
+            $table->decimal('valor_total', 10, 2)->nullable();
+            $table->string('status')->default('pendente'); // pendente, aprovado, rejeitado
+            $table->timestamps();
+        });
     }
 
     /**

@@ -67,6 +67,36 @@ class OrcamentoController extends Controller
         $orcamento->load('fornecedor', 'itens.produto');
         return view('orcamentos.show', compact('orcamento'));
     }
-    
-    // Implemente edit, update e destroy conforme a necessidade
+
+    public function edit(Orcamento $orcamento)
+    {
+        $fornecedores = Fornecedor::all();
+        $produtos = Produto::all();
+        $orcamento->load('itens.produto');
+        return view('orcamentos.edit', compact('orcamento', 'fornecedores', 'produtos'));
+    }
+
+    public function update(Request $request, Orcamento $orcamento)
+    {
+        $request->validate([
+            'fornecedor_id' => 'required|exists:fornecedores,id',
+            'data_orcamento' => 'required|date',
+            'status' => 'required|in:pendente,aprovado,rejeitado',
+        ]);
+
+        $orcamento->update($request->only(['fornecedor_id', 'data_orcamento', 'status']));
+
+        return redirect()->route('orcamentos.show', $orcamento->id)->with('success', 'Orçamento atualizado com sucesso.');
+    }
+
+    public function destroy(Orcamento $orcamento)
+    {
+        try {
+            $orcamento->itens()->delete();
+            $orcamento->delete();
+            return redirect()->route('orcamentos.index')->with('success', 'Orçamento excluído com sucesso.');
+        } catch (\Exception $e) {
+            return redirect()->route('orcamentos.index')->with('error', 'Erro ao excluir orçamento: ' . $e->getMessage());
+        }
+    }
 }

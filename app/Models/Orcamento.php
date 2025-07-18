@@ -18,4 +18,11 @@ class Orcamento extends Model
     {
         return $this->hasMany(ItemOrcamento::class);
     }
+    
+    protected $fillable = [
+        'fornecedor_id',
+        'data_orcamento',
+        'valor_total',
+        'status'
+    ];
 }

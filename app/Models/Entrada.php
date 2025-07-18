@@ -18,4 +18,10 @@ class Entrada extends Model
     {
         return $this->hasMany(ItemEntrada::class);
     }
+    
+    protected $fillable = [
+        'compra_id',
+        'data_entrada',
+        'observacoes'
+    ];
 }

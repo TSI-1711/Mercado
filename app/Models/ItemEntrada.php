@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemEntrada extends Model
 {
+    protected $fillable = [
+        'entrada_id',
+        'produto_id',
+        'quantidade_recebida'
+    ];
+
     // Um item de entrada pertence a uma entrada
     public function entrada()
     {

@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemCompra extends Model
 {
+    protected $fillable = [
+        'compra_id',
+        'produto_id',
+        'quantidade',
+        'preco_unitario'
+    ];
+
     // Um item de compra pertence a uma compra
     public function compra()
     {

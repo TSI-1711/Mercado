@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('fornecedor_id');
-            $table->string('descricao');
             $table->date('data_compra');
-            $table->decimal('valor_total', 10, 2);
+            $table->decimal('valor_total', 10, 2)->default(0);
+            $table->string('status')->default('em_aberto'); // em_aberto, recebido, cancelado
             $table->timestamps();
 
-            $table->foreign('fornecedor_id')->references('id')->on('fornecedor')->onDelete('cascade');
+            $table->foreign('fornecedor_id')->references('id')->on('fornecedores')->onDelete('cascade');
         });
     }
 
